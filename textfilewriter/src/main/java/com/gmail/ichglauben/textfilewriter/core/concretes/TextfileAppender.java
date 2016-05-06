@@ -65,10 +65,84 @@ public class TextfileAppender {
 		}
 	}
 
+	public static void append(File file, List<String> data, String extension) throws IOException {
+		if (null != file) {
+			if (!PathValidator.pathExists(file))
+				file = new File(GlobalConstants.USRDIR + file.toPath().getFileName() + "." + extension);
+
+			FileWriter writer = new FileWriter(file, true);
+			BufferedWriter buffer = new BufferedWriter(writer);
+			buffer.append(GlobalConstants.LINESEPARATOR);
+
+			// for (String str : data) {
+			// buffer.append(str + GlobalConstants.LINESEPARATOR);
+			// }
+
+			int i = 0;
+			for (String str : data) {
+				i++;
+				if (i < data.size()) {
+					buffer.append(str + GlobalConstants.LINESEPARATOR);
+				} else {
+					buffer.append(str);
+				}
+			}
+
+			// String results;
+			// switch (data.size()) {
+			// case 1:
+			// results = " link";
+			// break;
+			//
+			// default:
+			// results = " total links";
+			// break;
+			// }
+			// buffer.append(data.size() + results);
+
+			buffer.close();
+		}
+	}
+
 	public static void append(File file, String[] data) throws IOException {
 		if (null != file) {
 			if (!PathValidator.pathExists(file))
 				file = new File(GlobalConstants.USRDIR + file.toPath().getFileName() + ".txt");
+
+			FileWriter writer = new FileWriter(file, true);
+			BufferedWriter buffer = new BufferedWriter(writer);
+			buffer.append(GlobalConstants.LINESEPARATOR);
+
+			int i = 0;
+			for (String str : data) {
+				i++;
+				if (i < data.length) {
+					buffer.append(str + GlobalConstants.LINESEPARATOR);
+				} else {
+					buffer.append(str);
+				}
+			}
+
+			// String results;
+			// switch (data.length) {
+			// case 1:
+			// results = " link";
+			// break;
+			//
+			// default:
+			// results = " total links";
+			// break;
+			// }
+			// buffer.append(data.length + results);
+
+			buffer.close();
+		}
+	}
+
+	public static void append(File file, String[] data, String extension) throws IOException {
+		if (null != file) {
+			if (!PathValidator.pathExists(file))
+				file = new File(GlobalConstants.USRDIR + file.toPath().getFileName() + "." + extension);
 
 			FileWriter writer = new FileWriter(file, true);
 			BufferedWriter buffer = new BufferedWriter(writer);
