@@ -6,7 +6,7 @@ A simple Java solution that creates and writes to a text file. The project conta
   <li>Download the project's zip</li>
   <li>Compile the project</li>
   <li>Generate a jar library</li>
-  <li>Call from either TextfileAppender or TextfileOverwriter as needed</li>
+  <li>Add jar as external library reference</li>
 </ol>
 
 <h2>Motivation</h2>
