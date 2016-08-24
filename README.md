@@ -1,5 +1,5 @@
 # Text File Writer
-Overwrite or append to a text file. A simple Java solution, providing a class for overwriting a text file and a class for appending to a text file. Both classes will create the text file if it does not exist.
+Overwrite or append to a text file. A simple Java solution containing a class for overwriting a text file and a class for appending to a text file. Both classes will create the text file if it does not exist.
 
 <h2>Installation</h2>
 <ol>
