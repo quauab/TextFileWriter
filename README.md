@@ -12,5 +12,3 @@ Overwrite or append to a text file. A simple Java solution containing a class fo
 <h2>Motivation</h2>
 I needed a library that would allow me to write a report or anything else to a text file as needed.
 
-<h2>Info</h2>
-There aren't any test cases for this project.
