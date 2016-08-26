@@ -6,170 +6,35 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import com.gmail.ichglauben.pathvalidator.core.concretes.PathValidator;
 import com.gmail.ichglauben.textfilewriter.core.utils.concretes.GlobalConstants;
-import com.gmail.ichglauben.textfilewriter.core.utils.concretes.PathValidator;
 
 public class TextfileOverwriter {
-
-	public TextfileOverwriter() {
+	private TextfileOverwriter() {
 		super();
 	}
 
 	/**
-	 * Static method that will over-write the contents of the file. If the file
-	 * does not exist, this method will create it in the program's directory.
+	 * Writes a new or overwrites an existing text file.
 	 * 
-	 * @param file
-	 *            - the file onto which the data will be written
+	 * @param newFile
+	 *            String file name with or without extension
 	 * @param data
-	 *            - the data to write
-	 * @throws java.io.IOException
-	 *             - Throws IOException
+	 *            String List the data to be written to the file
 	 */
-	public static void overwrite(File file, List<String> data) throws IOException {
-		if (null != file) {
-			if (!PathValidator.pathExists(file))
-				file = new File(GlobalConstants.USRDIR + file.toPath().getFileName() + ".txt");
-
-			FileWriter writer = new FileWriter(file);
+	public static void overWriteText(String newFile, List<String> data) throws IOException {
+		if (null != newFile && newFile.length() > 0) {
+			if (!newFile.endsWith(".txt"))
+				newFile += ".txt";
+			File file = new File(newFile);
+			FileWriter writer = new FileWriter(file, false);
 			BufferedWriter buffer = new BufferedWriter(writer);
-
-			// for (String str : data) {
-			// buffer.write(str + GlobalConstants.LINESEPARATOR);
-			// }
-
-			int i = 0;
 			for (String str : data) {
-				i++;
-				if (i < data.size()) {
-					buffer.write(str + GlobalConstants.LINESEPARATOR);
-				} else {
-					buffer.write(str);
-				}
+				buffer.write(str + GlobalConstants.LINESEPARATOR);
 			}
-
-			// String results;
-			// switch (data.size()) {
-			// case 1:
-			// results = " line";
-			// break;
-			//
-			// default:
-			// results = " total lines";
-			// break;
-			// }
-			// buffer.append(data.size() + results);
-
 			buffer.close();
 		}
 	}
 
-	public static void overwrite(File file, List<String> data, String extension) throws IOException {
-		if (null != file) {
-			if (!PathValidator.pathExists(file))
-				file = new File(GlobalConstants.USRDIR + file.toPath().getFileName() + "." + extension);
-
-			FileWriter writer = new FileWriter(file);
-			BufferedWriter buffer = new BufferedWriter(writer);
-
-			// for (String str : data) {
-			// buffer.write(str + GlobalConstants.LINESEPARATOR);
-			// }
-
-			int i = 0;
-			for (String str : data) {
-				i++;
-				if (i < data.size()) {
-					buffer.write(str + GlobalConstants.LINESEPARATOR);
-				} else {
-					buffer.write(str);
-				}
-			}
-
-			// String results;
-			// switch (data.size()) {
-			// case 1:
-			// results = " line";
-			// break;
-			//
-			// default:
-			// results = " total lines";
-			// break;
-			// }
-			// buffer.append(data.size() + results);
-
-			buffer.close();
-		}
-	}
-
-	public static void overwrite(File file, String[] data) throws IOException {
-		if (null != file) {
-			if (!PathValidator.pathExists(file))
-				file = new File(GlobalConstants.USRDIR + file.toPath().getFileName() + ".txt");
-
-			FileWriter writer = new FileWriter(file);
-			BufferedWriter buffer = new BufferedWriter(writer);
-			int i = 0;
-			for (String str : data) {
-				i++;
-				if (i < data.length) {
-					buffer.write(str + GlobalConstants.LINESEPARATOR);
-				} else {
-					buffer.write(str);
-				}
-			}
-
-			// String results;
-			// switch (data.length) {
-			// case 1:
-			// results = " line";
-			// break;
-			//
-			// default:
-			// results = " total lines";
-			// break;
-			// }
-			// buffer.append(data.length + results);
-
-			buffer.close();
-		}
-	}
-
-	public static void overwrite(File file, String[] data, String extension) throws IOException {
-		if (null != file) {
-			if (!PathValidator.pathExists(file))
-				file = new File(GlobalConstants.USRDIR + file.toPath().getFileName() + "." + extension);
-
-			FileWriter writer = new FileWriter(file);
-			BufferedWriter buffer = new BufferedWriter(writer);
-			int i = 0;
-			for (String str : data) {
-				i++;
-				if (i < data.length) {
-					buffer.write(str + GlobalConstants.LINESEPARATOR);
-				} else {
-					buffer.write(str);
-				}
-			}
-
-			// String results;
-			// switch (data.length) {
-			// case 1:
-			// results = " line";
-			// break;
-			//
-			// default:
-			// results = " total lines";
-			// break;
-			// }
-			// buffer.append(data.length + results);
-
-			buffer.close();
-		}
-	}
-
-	public String toString() {
-		return "Text File Over-writer";
-	}
-
+	public String toString() { return "Text File Over-writer"; }
 }

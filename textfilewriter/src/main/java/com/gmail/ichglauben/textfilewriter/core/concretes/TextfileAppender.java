@@ -6,8 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import com.gmail.ichglauben.pathvalidator.core.concretes.PathValidator;
 import com.gmail.ichglauben.textfilewriter.core.utils.concretes.GlobalConstants;
-import com.gmail.ichglauben.textfilewriter.core.utils.concretes.PathValidator;
 
 public class TextfileAppender {
 
@@ -16,160 +16,23 @@ public class TextfileAppender {
 	}
 
 	/**
-	 * Static method that will append to the contents of the file. If the file
-	 * does not exist, this method will create it in the program's directory.
+	 * /** Writes a new or appends to an existing text file.
 	 * 
-	 * @param file
-	 *            - the file onto which the data will be written
+	 * @param newFile
+	 *            String file name with or without extension
 	 * @param data
-	 *            - The data to write
-	 * @throws java.io.IOException
-	 *             - Throws IOException
+	 *            String List the data to be written to the file
 	 */
-	public static void append(File file, List<String> data) throws IOException {
-		if (null != file) {
-			if (!PathValidator.pathExists(file))
-				file = new File(GlobalConstants.USRDIR + file.toPath().getFileName() + ".txt");
-
+	public static void appendWriteText(String newFile, List<String> data) throws IOException {
+		if (null != newFile && newFile.length() > 0) {
+			if (!newFile.endsWith(".txt"))
+				newFile += ".txt";
+			File file = new File(newFile);
 			FileWriter writer = new FileWriter(file, true);
 			BufferedWriter buffer = new BufferedWriter(writer);
-			buffer.append(GlobalConstants.LINESEPARATOR);
-
-			// for (String str : data) {
-			// buffer.append(str + GlobalConstants.LINESEPARATOR);
-			// }
-
-			int i = 0;
 			for (String str : data) {
-				i++;
-				if (i < data.size()) {
-					buffer.append(str + GlobalConstants.LINESEPARATOR);
-				} else {
-					buffer.append(str);
-				}
+				buffer.write(str + GlobalConstants.LINESEPARATOR);
 			}
-
-			// String results;
-			// switch (data.size()) {
-			// case 1:
-			// results = " link";
-			// break;
-			//
-			// default:
-			// results = " total links";
-			// break;
-			// }
-			// buffer.append(data.size() + results);
-
-			buffer.close();
-		}
-	}
-
-	public static void append(File file, List<String> data, String extension) throws IOException {
-		if (null != file) {
-			if (!PathValidator.pathExists(file))
-				file = new File(GlobalConstants.USRDIR + file.toPath().getFileName() + "." + extension);
-
-			FileWriter writer = new FileWriter(file, true);
-			BufferedWriter buffer = new BufferedWriter(writer);
-			buffer.append(GlobalConstants.LINESEPARATOR);
-
-			// for (String str : data) {
-			// buffer.append(str + GlobalConstants.LINESEPARATOR);
-			// }
-
-			int i = 0;
-			for (String str : data) {
-				i++;
-				if (i < data.size()) {
-					buffer.append(str + GlobalConstants.LINESEPARATOR);
-				} else {
-					buffer.append(str);
-				}
-			}
-
-			// String results;
-			// switch (data.size()) {
-			// case 1:
-			// results = " link";
-			// break;
-			//
-			// default:
-			// results = " total links";
-			// break;
-			// }
-			// buffer.append(data.size() + results);
-
-			buffer.close();
-		}
-	}
-
-	public static void append(File file, String[] data) throws IOException {
-		if (null != file) {
-			if (!PathValidator.pathExists(file))
-				file = new File(GlobalConstants.USRDIR + file.toPath().getFileName() + ".txt");
-
-			FileWriter writer = new FileWriter(file, true);
-			BufferedWriter buffer = new BufferedWriter(writer);
-			buffer.append(GlobalConstants.LINESEPARATOR);
-
-			int i = 0;
-			for (String str : data) {
-				i++;
-				if (i < data.length) {
-					buffer.append(str + GlobalConstants.LINESEPARATOR);
-				} else {
-					buffer.append(str);
-				}
-			}
-
-			// String results;
-			// switch (data.length) {
-			// case 1:
-			// results = " link";
-			// break;
-			//
-			// default:
-			// results = " total links";
-			// break;
-			// }
-			// buffer.append(data.length + results);
-
-			buffer.close();
-		}
-	}
-
-	public static void append(File file, String[] data, String extension) throws IOException {
-		if (null != file) {
-			if (!PathValidator.pathExists(file))
-				file = new File(GlobalConstants.USRDIR + file.toPath().getFileName() + "." + extension);
-
-			FileWriter writer = new FileWriter(file, true);
-			BufferedWriter buffer = new BufferedWriter(writer);
-			buffer.append(GlobalConstants.LINESEPARATOR);
-
-			int i = 0;
-			for (String str : data) {
-				i++;
-				if (i < data.length) {
-					buffer.append(str + GlobalConstants.LINESEPARATOR);
-				} else {
-					buffer.append(str);
-				}
-			}
-
-			// String results;
-			// switch (data.length) {
-			// case 1:
-			// results = " link";
-			// break;
-			//
-			// default:
-			// results = " total links";
-			// break;
-			// }
-			// buffer.append(data.length + results);
-
 			buffer.close();
 		}
 	}
