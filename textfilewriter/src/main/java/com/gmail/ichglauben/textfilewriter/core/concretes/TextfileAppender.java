@@ -11,7 +11,7 @@ import com.gmail.ichglauben.textfilewriter.core.utils.concretes.GlobalConstants;
 
 public class TextfileAppender {
 
-	public TextfileAppender() {
+	private TextfileAppender() {
 		super();
 	}
 
