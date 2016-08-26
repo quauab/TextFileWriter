@@ -28,17 +28,21 @@ public class TextfileAppenderTests {
 		list.add("new data");
 		list.add("being written");
 
-		TextfileAppender.appendWriteText(ud + "appended", list);
+		TextfileAppender.append(ud + "appended", list);
 	
+		list.clear();
 		list.add("adding even more data");
 		list.add("to the text file");
 		
-		TextfileAppender.appendWriteText(ud + "appended.txt", list);
-		
-		List<String> read = readFile(ud + "appended.txt");
+		TextfileAppender.append(ud + "appended.txt", list);
 
-		for (int i = 0; i < list.size(); i++) {
-			assertTrue("Lists don't match", list.get(i).equals(read.get(i)));
+		list.clear();
+		list.add("....and even more nonsensical data");
+		
+		TextfileAppender.append(ud + "appended.txt", list);
+		
+		for (String s:readFile(ud + "appended.txt")) {
+			println(s);
 		}
 	}
 

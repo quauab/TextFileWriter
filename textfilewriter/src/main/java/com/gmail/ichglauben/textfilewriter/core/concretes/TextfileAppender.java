@@ -23,7 +23,7 @@ public class TextfileAppender {
 	 * @param data
 	 *            String List the data to be written to the file
 	 */
-	public static void appendWriteText(String newFile, List<String> data) throws IOException {
+	public static void append(String newFile, List<String> data) throws IOException {
 		if (null != newFile && newFile.length() > 0) {
 			if (!newFile.endsWith(".txt"))
 				newFile += ".txt";
