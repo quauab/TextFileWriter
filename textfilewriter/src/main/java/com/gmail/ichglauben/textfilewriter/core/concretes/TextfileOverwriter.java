@@ -26,8 +26,11 @@ public class TextfileOverwriter {
 	 */
 	public static void overwrite(String newFile, List<String> data) throws IOException {
 		if (null != newFile && newFile.length() > 0) {
-			if (!newFile.endsWith(".txt"))
+			if (!newFile.endsWith(".txt")) {
+				if (newFile.lastIndexOf(".") != -1)
+					newFile = newFile.substring(0, newFile.lastIndexOf("."));
 				newFile += ".txt";
+			}
 			File file = new File(newFile);
 			FileWriter writer = new FileWriter(file, false);
 			BufferedWriter buffer = new BufferedWriter(writer);
@@ -52,13 +55,10 @@ public class TextfileOverwriter {
 		if (null != newFile && newFile.length() > 0) {
 			if (newFile.lastIndexOf(".") != -1)
 				newFile = newFile.substring(0, newFile.lastIndexOf("."));
-
 			Pattern pattern = Pattern.compile("(\\.\\w+)");
 			Matcher matcher = pattern.matcher(extension);
-
 			if (matcher.find())
 				newFile += matcher.group(0);
-
 			File file = new File(newFile);
 			FileWriter writer = new FileWriter(file, false);
 			BufferedWriter buffer = new BufferedWriter(writer);

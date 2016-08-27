@@ -56,7 +56,7 @@ public class TextfileOverwriterTests {
 	public void testOverwriteSpecifyExtension() throws IOException {
 		List<String> list = new ArrayList<String>();
 		list.add("Writing text to a file");
-		list.add("who's extension ends with \".dot\"");
+		list.add("who's extension is \".dot\"");
 		TextfileOverwriter.overwrite("overwritten", list, ".dot");	
 		printFile(ud + "overwritten.dot");
 		println("");
