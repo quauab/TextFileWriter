@@ -29,24 +29,39 @@ public class TextfileOverwriterTests {
 		list.add("new data");
 		list.add("being written");
 
-		TextfileOverwriter.overWriteText("overwritten.txt", list);
-		TextfileOverwriter.overWriteText("overwritten", list);
+		TextfileOverwriter.overwrite("overwritten1.txt", list);
+		TextfileOverwriter.overwrite("overwritten1", list);
 
-		List<String> read = readFile(ud + "warning.txt");
+		List<String> read = readFile(ud + "overwritten1.txt");
 
 		for (int i = 0; i < list.size(); i++) {
 			assertTrue("Lists don't match", list.get(i).equals(read.get(i)));
 		}
+		
+		printFile(ud + "overwritten1.txt");
+		println("");
 	}
 	
 	@Test
 	public void testOverwriteWithoutExtension() throws IOException {
 		List<String> list = new ArrayList<String>();
-		list.add("more new data");
-		list.add("being written");
-		TextfileOverwriter.overWriteText("overwritten", list);		
+		list.add("Adding nonsensical text");
+		list.add("here is more text on a new line");
+		TextfileOverwriter.overwrite("overwritten2", list);		
+		printFile(ud + "overwritten2.txt");
+		println("");
 	}
 
+	@Test
+	public void testOverwriteSpecifyExtension() throws IOException {
+		List<String> list = new ArrayList<String>();
+		list.add("Writing text to a file");
+		list.add("who's extension ends with \".dot\"");
+		TextfileOverwriter.overwrite("overwritten", list, ".dot");	
+		printFile(ud + "overwritten.dot");
+		println("");
+	}
+	
 	List<String> readFile(String file_path) {
 		List<String> list = null;
 		FileInputStream fis = null;

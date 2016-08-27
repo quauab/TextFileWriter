@@ -45,6 +45,19 @@ public class TextfileAppenderTests {
 			println(s);
 		}
 	}
+	
+	@Test
+	public void testAppendWithExtension() throws IOException {
+		String ext = ".log";
+		String file = ud + "log1.jam";
+		List<String> data = new ArrayList<String>();
+		data.add("Log File 1");
+		data.add("Added test text");
+		data.add("So the text may not make sends");
+		data.add("As its only test data, remember?");
+		
+		TextfileAppender.append(file,data,ext);
+	}
 
 	List<String> readFile(String file_path) {
 		List<String> list = null;
