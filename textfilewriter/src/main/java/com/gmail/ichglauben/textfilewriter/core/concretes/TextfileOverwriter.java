@@ -42,7 +42,7 @@ public class TextfileOverwriter {
 	}
 
 	/**
-	 * /** Writes a new or appends to an existing text file.
+	 * /** Writes a new or appends to an existing text file and adds given extension.
 	 * 
 	 * @param newFile
 	 *            String file name with or without extension
