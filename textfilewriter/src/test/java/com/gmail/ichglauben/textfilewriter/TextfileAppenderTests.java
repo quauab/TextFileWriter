@@ -73,6 +73,18 @@ public class TextfileAppenderTests {
 		println("");
 	}
 	
+	@Test
+	public void testAppendSpecifyExtension() throws IOException {
+		List<String> data = new ArrayList<String>();
+		data.add("The Alphabet");
+		data.add("Quality over Quantity");
+		data.add("Don't wait up for us");
+		
+		TextfileAppender.append(ud + "appended_file",data,".jam");
+		printFile(ud + "appended_file.jam");
+		println("");
+	}
+	
 	List<String> readFile(String file_path) {
 		List<String> list = null;
 		FileInputStream fis = null;
