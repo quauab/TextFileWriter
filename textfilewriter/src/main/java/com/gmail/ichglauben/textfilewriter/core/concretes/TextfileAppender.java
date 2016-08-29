@@ -11,9 +11,6 @@ import java.util.regex.Pattern;
 import com.gmail.ichglauben.textfilewriter.core.utils.concretes.GlobalConstants;
 
 public class TextfileAppender {
-	ClassLoader loader = getClass().getClassLoader();
-	File textFile = new File(loader.getResource("text_file.txt").getFile());
-
 	private TextfileAppender() {
 		super();
 	}
