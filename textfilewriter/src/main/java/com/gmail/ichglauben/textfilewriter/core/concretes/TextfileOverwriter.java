@@ -40,6 +40,31 @@ public class TextfileOverwriter {
 			buffer.close();
 		}
 	}
+	
+	/**
+	 * Writes a new or overwrites an existing text file.
+	 * 
+	 * @param newFile
+	 *            String file name with or without extension
+	 * @param data
+	 *            String array the data to be written to the file
+	 */
+	public static void overwrite(String newFile, String[] data) throws IOException {
+		if (null != newFile && newFile.length() > 0) {
+			if (!newFile.endsWith(".txt")) {
+				if (newFile.lastIndexOf(".") != -1)
+					newFile = newFile.substring(0, newFile.lastIndexOf("."));
+				newFile += ".txt";
+			}
+			File file = new File(newFile);
+			FileWriter writer = new FileWriter(file, false);
+			BufferedWriter buffer = new BufferedWriter(writer);
+			for (String str : data) {
+				buffer.write(str + GlobalConstants.LINESEPARATOR);
+			}
+			buffer.close();
+		}
+	}
 
 	/**
 	 * /** Writes a new or appends to an existing text file and adds given extension.
@@ -52,6 +77,34 @@ public class TextfileOverwriter {
 	 *            String specify the new file's extension
 	 */
 	public static void overwrite(String newFile, List<String> data, String extension) throws IOException {
+		if (null != newFile && newFile.length() > 0) {
+			if (newFile.lastIndexOf(".") != -1)
+				newFile = newFile.substring(0, newFile.lastIndexOf("."));
+			Pattern pattern = Pattern.compile("(\\.\\w+)");
+			Matcher matcher = pattern.matcher(extension);
+			if (matcher.find())
+				newFile += matcher.group(0);
+			File file = new File(newFile);
+			FileWriter writer = new FileWriter(file, false);
+			BufferedWriter buffer = new BufferedWriter(writer);
+			for (String str : data) {
+				buffer.write(str + GlobalConstants.LINESEPARATOR);
+			}
+			buffer.close();
+		}
+	}
+	
+	/**
+	 * /** Writes a new or appends to an existing text file and adds given extension.
+	 * 
+	 * @param newFile
+	 *            String file name with or without extension
+	 * @param data
+	 *            String array the data to be written to the file
+	 * @param extension
+	 *            String specify the new file's extension
+	 */
+	public static void overwrite(String newFile, String[] data, String extension) throws IOException {
 		if (null != newFile && newFile.length() > 0) {
 			if (newFile.lastIndexOf(".") != -1)
 				newFile = newFile.substring(0, newFile.lastIndexOf("."));
